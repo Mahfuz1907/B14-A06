@@ -1,0 +1,13 @@
+.browseButton {
+  background-color: #c2f800;
+  padding: 12px 24px;
+  border-radius: 6px;
+  color: black;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.browseButton:hover {
+  background-color: #addd02;
+}

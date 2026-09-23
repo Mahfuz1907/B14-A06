@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme='light'
       className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#090a0d]">
         <Navbar />
         {children}
         <Footer />

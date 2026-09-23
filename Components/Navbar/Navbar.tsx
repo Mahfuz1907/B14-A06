@@ -4,7 +4,7 @@ import './Navbar.css'
 
 const Navbar = () => {
     return (
-        <div className='sticky top-0 z-50 mb-6 flex flex-row justify-between items-center px-5 md:px-20 py-4 border border-[#1c1f26]'>
+        <div className='sticky top-0 z-50 mb-6 bg-[#090a0d] flex flex-row justify-between items-center px-5 md:px-20 py-4 border border-[#1c1f26]'>
             <button className='text-white font-oswald text-lg font-bold cursor-pointer'>FITLOG</button>
             <div className='flex flex-row justify-center items-center gap-0 md:gap-2 font-inter'>
                 <button className='active'>Workouts</button>
