@@ -1,15 +1,11 @@
 import React from 'react';
 import './Navbar.css'
-import Image from 'next/image';
-import logo from '@/public/assets/logo.png'
+
 
 const Navbar = () => {
     return (
-        <div className='flex flex-row justify-between items-center px-5 md:px-20 py-4 border-b border-[#1c1f26]'>
-            <div className='flex flex-row justify-between items-center gap-1'>
-                <Image src={logo} alt='logo' className='hidden md:flex'/>
-                <button className='text-white font-oswald text-lg font-bold'>FITLOG</button>
-            </div>
+        <div className='sticky top-0 z-50 mb-6 flex flex-row justify-between items-center px-5 md:px-20 py-4 border-b border-[#1c1f26]'>
+            <button className='text-white font-oswald text-lg font-bold cursor-pointer'>FITLOG</button>
             <div className='flex flex-row justify-center items-center gap-0 md:gap-2 font-inter'>
                 <button className='active'>Workouts</button>
                 <button className='inActive'>My Plan</button>
