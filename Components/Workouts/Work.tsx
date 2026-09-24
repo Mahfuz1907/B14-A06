@@ -14,7 +14,7 @@ export interface WorkoutType {
 const Work = ({ work }: WorkoutType) => {
 
   return (
-    <Link href={`/details/${work.id}`}>
+    <Link href={`/${work.id}`}>
         <div className='workCard'>
             <div className='relative w-full h-48 overflow-hidden rounded-t-2xl'>
                 <Image 
