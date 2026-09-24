@@ -10,16 +10,37 @@ export interface WorkoutDetailsPageTypes{
     }>
 }
 
+
 const getWorkout = async(id:string) => {
     const response = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`)
     const data = await response.json()
     return data
 }
 
+
+export async function generateMetadata({params}:WorkoutDetailsPageTypes) {
+    const {id} = await params
+    const work = await getWorkout(id)
+
+    if (!work) {
+        return {
+            title: 'Workout Not Found | FitLog',
+            icons: {
+                icon: '/assets/logo.ico'
+            }
+        };
+    }
+
+    return {
+        title: `${work.name} | FitLog`,
+        icons: {
+                icon: '/assets/logo.ico'
+            }
+    }
+}
+
 const WorkoutDetailsPage = async({params}:WorkoutDetailsPageTypes) => {
     const {id} = await params
-    console.log("RECEIVED ID IN PAGE:", id);
-    
     const work = await getWorkout(id)
 
 
