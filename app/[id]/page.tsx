@@ -54,8 +54,8 @@ const WorkoutDetailsPage = async({params}:WorkoutDetailsPageTypes) => {
 
     
     return (
-        <div className='mx-20 mt-10 mb-16 flex flex-row justify-between items-start gap-20'>
-            <div className='relative w-1/2 h-200 aspect-video overflow-hidden rounded-2xl shrink-0'>
+        <div className='mx-5 md:mx-20 mt-10 mb-16 flex flex-col lg:flex-row justify-between items-center lg:items-start gap-20'>
+            <div className='relative w-full lg:w-1/2 h-200 aspect-video overflow-hidden rounded-2xl shrink-0'>
                 <Image 
                     src={work.image} 
                     alt={work.name} 
