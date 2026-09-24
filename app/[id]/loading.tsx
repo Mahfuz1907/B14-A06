@@ -2,7 +2,7 @@ import React from 'react';
 
 const workoutDetailsLoading = () => {
     return (
-        <div>
+        <div className='flex justify-center items-center'>
             <span className="loading loading-spinner text-accent"></span>
         </div>
     );

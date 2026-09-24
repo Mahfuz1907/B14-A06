@@ -1,0 +1,16 @@
+.tab-active {
+  padding: 4px 16px;
+  background-color: #1f242d;
+  border: 1px solid #2b303d;
+  border-radius: 8px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tab {
+  color: #8a92a0;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 4px 16px;
+}
