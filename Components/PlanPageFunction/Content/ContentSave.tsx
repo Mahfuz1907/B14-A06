@@ -3,6 +3,7 @@
 import { WorkContext } from '@/Context/WorkContext';
 import Link from 'next/link';
 import React, { useContext } from 'react';
+import SaveCard from './PlanSaveCard/SaveCard';
 
 const ContentSave = () => {
     const {saveLater} = useContext(WorkContext)
@@ -15,7 +16,11 @@ const ContentSave = () => {
             <Link href={'/'} className='bg-[#c2f10d] hover:bg-[#abd503] py-2.5 px-6 rounded-[9999px] text-black font-inter font-medium text-base cursor-pointer'>Go to workouts</Link>
         </div>
     ) : (
-        <div className='text-white'>abc</div>
+        <div className='flex flex-col justify-between items-start gap-4 w-full'>
+            {
+                saveLater.map((save) => <SaveCard key={save.id} save={save} />)
+            }
+        </div>
     );
 };
 
