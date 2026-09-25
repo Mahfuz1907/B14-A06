@@ -8,6 +8,7 @@ import '../../PlantPageFunction.css'
 import { HiXMark } from "react-icons/hi2";
 import Link from 'next/link';
 import { WorkContext } from '@/Context/WorkContext';
+import { toast } from 'react-toastify';
 
 export interface PlanCardType{
     plan: WorkoutTypesPromises
@@ -16,9 +17,16 @@ export interface PlanCardType{
 const PlanCard = ({plan}: PlanCardType) => {
     const {planToday, setPlanToday} = useContext(WorkContext)
 
+    const handleDone = (item:WorkoutTypesPromises) => {
+        const newArray = planToday.filter((plan) => plan.id !== item.id)
+        setPlanToday(newArray)
+        toast.success(`${item.name} is done and removed successfully`)
+    }
+
     const handleRemove = (item:WorkoutTypesPromises) => {
         const newArray = planToday.filter((plan) => plan.id !== item.id)
         setPlanToday(newArray)
+        toast.success(`${item.name} is removed successfully`)
     }
     return (
         <div className='p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-0 w-full'>
@@ -45,7 +53,7 @@ const PlanCard = ({plan}: PlanCardType) => {
             </div>
             <div className='flex flex-row justify-end items-center gap-4'>
                 <Link  href={`/${plan.id}`} className='view-details font-inter'>View Details</Link>
-                <button onClick={() => handleRemove(plan)} className='mark-as-done font-inter'>Mark as Done</button>
+                <button onClick={() => handleDone(plan)} className='mark-as-done font-inter'>Mark as Done</button>
                 <button onClick={() => handleRemove(plan)} className='cross-mark'><HiXMark className='text-white' /></button>
             </div>
         </div>

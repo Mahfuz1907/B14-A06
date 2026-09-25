@@ -5,8 +5,24 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import PlanCard from './PlanSaveCard/PlanCard';
 
+
 const ContentAdd = () => {
-    const {planToday} = useContext(WorkContext)
+    const {planToday, sortBy} = useContext(WorkContext)
+
+    const sortedPlan = [...planToday].sort((a, b) => {
+        if(sortBy === 'Duration'){
+            return b.duration - a.duration
+        }
+        if(sortBy === 'Calories'){
+            return b.caloriesBurned - a.caloriesBurned
+        }
+        if(sortBy === 'Rating'){
+            return b.rating - a.rating
+        }
+
+        return 0
+    })
+
     return planToday.length === 0 ? (
         <div className='py-24 px-4 border bg-[#11131780] border-dashed border-[#ffffff1a] rounded-xl w-full flex flex-col justify-center items-center gap-6'>
             <div className='flex flex-col justify-center items-center'>
@@ -18,7 +34,7 @@ const ContentAdd = () => {
     ) : ( 
         <div className='flex flex-col justify-between items-start gap-4 w-full'>
             {
-                planToday.map((plan) => <PlanCard key={plan.id} plan={plan} />)
+                sortedPlan.map((plan) => <PlanCard key={plan.id} plan={plan} />)
             }
         </div>
     );

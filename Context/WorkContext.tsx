@@ -9,7 +9,9 @@ export interface WorkContextType{
     saveLater: WorkoutTypesPromises[],
     setSaveLater: Dispatch<SetStateAction<WorkoutTypesPromises[]>>, 
     tab: string,
-    setTab: Dispatch<SetStateAction<string>>
+    setTab: Dispatch<SetStateAction<string>>,
+    sortBy: string,
+    setSortBy: Dispatch<SetStateAction<string>>
 }
 
 export const WorkContext = createContext<WorkContextType>({
@@ -18,13 +20,16 @@ export const WorkContext = createContext<WorkContextType>({
     saveLater: [],
     setSaveLater: () => {},
     tab: 'plan',
-    setTab : () => {}
+    setTab : () => {},
+    sortBy: 'Duration',
+    setSortBy: () => {}
 })
 
 const WorkProvider = ({children} : {children: ReactNode}) => {
     const [planToday, setPlanToday] = useState<WorkoutTypesPromises[]>([])
     const [saveLater, setSaveLater] = useState<WorkoutTypesPromises[]>([])
     const [tab, setTab] = useState<string>('plan')
+    const [sortBy, setSortBy] = useState<string>('Duration')
 
     const sharedData = {
         planToday,
@@ -32,7 +37,9 @@ const WorkProvider = ({children} : {children: ReactNode}) => {
         saveLater,
         setSaveLater,
         tab, 
-        setTab
+        setTab,
+        sortBy,
+        setSortBy
     }
     return (
         <WorkContext.Provider 

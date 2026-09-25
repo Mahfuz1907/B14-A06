@@ -7,6 +7,7 @@ import { FaRegStar } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
 import Link from 'next/link';
 import { WorkContext } from '@/Context/WorkContext';
+import { toast } from 'react-toastify';
 
 export interface SaveCardType{
     save: WorkoutTypesPromises
@@ -18,6 +19,7 @@ const SaveCard = ({save}: SaveCardType) => {
     const handleRemove = (item:WorkoutTypesPromises) => {
         const newArray = saveLater.filter((save) => save.id !== item.id)
         setSaveLater(newArray)
+        toast.success(`${item.name} is removed successfully`)
     }
     return (
         <div className='p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-0 w-full'>

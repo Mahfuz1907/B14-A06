@@ -6,7 +6,23 @@ import React, { useContext } from 'react';
 import SaveCard from './PlanSaveCard/SaveCard';
 
 const ContentSave = () => {
-    const {saveLater} = useContext(WorkContext)
+    const {saveLater, sortBy} = useContext(WorkContext)
+
+    const sortedSave = [...saveLater].sort((a, b) => {
+        if(sortBy === 'Duration'){
+            return b.duration - a.duration
+        }
+        if(sortBy === 'Calories'){
+            return b.caloriesBurned - a.caloriesBurned
+        }
+        if(sortBy === 'Rating'){
+            return b.rating - a.rating
+        }
+
+        return 0
+    })
+
+
     return saveLater.length === 0 ? (
         <div className='py-24 px-4 border bg-[#11131780] border-dashed border-[#ffffff1a] rounded-xl w-full flex flex-col justify-center items-center gap-6'>
             <div className='flex flex-col justify-center items-center'>
@@ -18,7 +34,7 @@ const ContentSave = () => {
     ) : (
         <div className='flex flex-col justify-between items-start gap-4 w-full'>
             {
-                saveLater.map((save) => <SaveCard key={save.id} save={save} />)
+                sortedSave.map((save) => <SaveCard key={save.id} save={save} />)
             }
         </div>
     );
