@@ -14,20 +14,32 @@ export interface AddWorkType{
 const Add = ({work}: AddWorkType) => {
     const {planToday, setPlanToday} = useContext(WorkContext)
 
+    const isDisabled = planToday.length >= 5
+
     const handleAddButton = () => {
         const inAlready = planToday.some((item) => Number(item.id) === Number(work.id))
 
-        if(!inAlready){
-            setPlanToday([...planToday, work])
-            toast.success(`Added ${work.name} to today's plan`)
+        if(isDisabled){
+            toast.error("Today's plan is full, finish it first")
         }else{
-            toast.error(`${work.name} is already in the plan`)
+            if(!inAlready){
+                setPlanToday([...planToday, work])
+                toast.success(`Added ${work.name} to today's plan`)
+            }else{
+                toast.error(`${work.name} is already in the plan`)
+            }
         }
     }
 
 
+
     return (
-            <button onClick={() => handleAddButton()} className='add-button font-inter'><SlCalender />Add to today&apos;s plan</button>
+            <button 
+            aria-disabled={isDisabled} 
+            onClick={() => handleAddButton()} 
+            className={`add-button ${isDisabled ? 'disable-add-button' : ''} font-inter`}>
+                <SlCalender />Add to today&apos;s plan
+            </button>
     );
 };
 

@@ -13,6 +13,10 @@
   font-weight: 600;
 }
 
+.disable-add-button {
+  cursor: not-allowed;
+}
+
 .add-button:hover {
   background-color: #abd503;
 }
