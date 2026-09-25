@@ -1,12 +1,19 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import './Plan.css'
 
 const Tab = () => {
+    const [tab, setTab] = useState('plan')
+
+    const handleTabClick = (tabType:string) => {
+        setTab(tabType)
+    }
     return (
         <div className='flex flex-row justify-between items-end sm:items-center w-full'>
             <div role="tablist" className="tabs tabs-box bg-[#151921] border-[#232732] rounded-xl">
-                <a role="tab" className="tab font-inter">Today&apos;s Plan</a>
-                <a role="tab" className="tab tab-active font-inter">Saved</a>
+                <a onClick={()=> handleTabClick('plan')} role="tab" className={`tab ${tab === 'plan' ? 'tab-active' : ''} font-inter`}>Today&apos;s Plan</a>
+                <a onClick={()=> handleTabClick('save')} role="tab" className={`tab ${tab === 'save' ? 'tab-active' : ''} font-inter`}>Saved</a>
             </div>
             <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 w-30 sm:w-60'>
                 <h1 className='text-[#8a92a0] font-inter font-normal text-xs w-20'>Sort By</h1>
