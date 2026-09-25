@@ -1,13 +1,15 @@
 'use client'
 import { usePathname } from 'next/navigation';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import './Navbar.css'
 import Link from 'next/link';
+import { WorkContext } from '@/Context/WorkContext';
 
 
 const Navbar = () => {
     const pathname = usePathname()
+    const {planToday, saveLater} = useContext(WorkContext)
 
     const fixStyle = (path:string) => {
         const isActive = pathname === path
@@ -22,8 +24,8 @@ const Navbar = () => {
                 <Link href={'/plan'} className={fixStyle('/plan')}>My Plan</Link>
             </div>
             <div className='flex flex-row justify-between items-center gap-0 md:gap-2 font-inter'>
-                <Link href={'/plan'} className='planSave planButton'>Plan <span className='planSpan'>0</span></Link>
-                <Link href={'/plan'} className='planSave saveButton'>Saved <span className='saveSpan'>0</span></Link>
+                <Link href={'/plan'} className='planSave planButton'>Plan <span className='planSpan'>{planToday.length}</span></Link>
+                <Link href={'/plan'} className='planSave saveButton'>Saved <span className='saveSpan'>{saveLater.length}</span></Link>
             </div>
         </div>
     );

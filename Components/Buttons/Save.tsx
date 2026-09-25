@@ -20,7 +20,7 @@ const Save = ({work}: SaveWorkType) => {
             setSaveLater([...saveLater, work])
             toast.success(`Saved ${work.name} for later`)
         }else{
-            toast.info(`${work.name} is already saved for later`)
+            toast.error(`${work.name} is already saved for later`)
         }
     }
 

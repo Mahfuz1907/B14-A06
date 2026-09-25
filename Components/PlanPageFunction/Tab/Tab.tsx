@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState } from 'react';
-import './Plan.css'
+import React, { useContext } from 'react';
+import { WorkContext } from '@/Context/WorkContext';
 
 const Tab = () => {
-    const [tab, setTab] = useState('plan')
+    const {tab, setTab} = useContext(WorkContext)
 
     const handleTabClick = (tabType:string) => {
         setTab(tabType)
@@ -20,7 +20,7 @@ const Tab = () => {
                 <select defaultValue="Pick a color" 
                 className="select bg-[#13161d] border border-[#232732] rounded-[9px] 
                 px-2.5 text-white font-inter text-xs font-normal">
-                    <option disabled={true}>Pick a color</option>
+                    <option disabled={true}>Pick a type</option>
                     <option>Duration</option>
                     <option>Calories</option>
                     <option>Rating</option>

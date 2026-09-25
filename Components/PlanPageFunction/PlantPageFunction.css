@@ -1,0 +1,27 @@
+.view-details {
+  border: 1px solid #374151;
+  border-radius: 9999px;
+  padding: 10px 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.view-details:hover {
+  background-color: #374151;
+}
+
+.mark-as-done {
+  background-color: #ccff00;
+  border-radius: 9999px;
+  padding: 10px 20px;
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mark-as-done:hover {
+  background-color: #a3cb04;
+}
