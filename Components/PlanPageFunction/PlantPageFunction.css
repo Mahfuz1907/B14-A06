@@ -25,3 +25,15 @@
 .mark-as-done:hover {
   background-color: #a3cb04;
 }
+
+.cross-mark {
+  color: white;
+  border-radius: 9999px;
+  font-weight: 700;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.cross-mark:hover {
+  background-color: #374151;
+}

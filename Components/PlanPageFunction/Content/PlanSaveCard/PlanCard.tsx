@@ -1,18 +1,27 @@
 import { WorkoutTypesPromises } from '@/type';
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaRegClock } from "react-icons/fa";
 import { IoMdFlame } from "react-icons/io";
 import { FaRegStar } from "react-icons/fa";
 import '../../PlantPageFunction.css'
+import { HiXMark } from "react-icons/hi2";
+import Link from 'next/link';
+import { WorkContext } from '@/Context/WorkContext';
 
 export interface PlanCardType{
     plan: WorkoutTypesPromises
 }
 
 const PlanCard = ({plan}: PlanCardType) => {
+    const {planToday, setPlanToday} = useContext(WorkContext)
+
+    const handleRemove = (item:WorkoutTypesPromises) => {
+        const newArray = planToday.filter((plan) => plan.id !== item.id)
+        setPlanToday(newArray)
+    }
     return (
-        <div className='p-4 flex flex-row justify-between items-center w-full'>
+        <div className='p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-0 w-full'>
             <div className='flex flex-row justify-start items-start gap-4'>
                 <div className='relative h-22 overflow-hidden shrink-0 rounded-xl aspect-video'>
                     <Image 
@@ -35,8 +44,9 @@ const PlanCard = ({plan}: PlanCardType) => {
                 </div>
             </div>
             <div className='flex flex-row justify-end items-center gap-4'>
-                <button className='view-details font-inter'>View Details</button>
-                <button className='mark-as-done font-inter'>Mark as Done</button>
+                <Link  href={`/${plan.id}`} className='view-details font-inter'>View Details</Link>
+                <button onClick={() => handleRemove(plan)} className='mark-as-done font-inter'>Mark as Done</button>
+                <button onClick={() => handleRemove(plan)} className='cross-mark'><HiXMark className='text-white' /></button>
             </div>
         </div>
     );
