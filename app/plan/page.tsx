@@ -6,7 +6,7 @@ import Content from './Content';
 
 const MyPlan = () => {
     return (
-        <div className='mx-20 mb-16 mt-10 flex flex-col justify-between items-start gap-6'>
+        <div className='mx-5 md:mx-20 mb-16 mt-10 flex flex-col justify-between items-start gap-6'>
             <div className='flex flex-col justify-between items-start gap-6 w-full'>
                 <div className='flex flex-col justify-between items-start gap-2'>
                     <h1 className='text-white font-oswald text-3xl font-bold'>MY PLAN</h1>
