@@ -115,7 +115,7 @@ const WorkoutDetailsPage = async({params}:WorkoutDetailsPageTypes) => {
                 </div>
                 <div className='flex flex-row justify-start items-center gap-4'>
                     <Add work={work} />
-                    <Save />
+                    <Save work={work} />
                 </div>
             </div>
         </div>

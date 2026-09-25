@@ -21,7 +21,7 @@ const Add = ({work}: AddWorkType) => {
             setPlanToday([...planToday, work])
             toast.success(`Added ${work.name} to today's plan`)
         }else{
-            toast.info(`${work.name} is already in the plan.`)
+            toast.info(`${work.name} is already in the plan`)
         }
     }
 

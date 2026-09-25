@@ -1,11 +1,32 @@
 'use client'
 
-import React from 'react';
+import { WorkContext } from '@/Context/WorkContext';
+import { WorkoutTypesPromises } from '@/type';
+import React, { useContext } from 'react';
 import { CiBookmark } from "react-icons/ci";
+import { toast } from 'react-toastify';
 
-const Save = () => {
+export interface SaveWorkType{
+    work: WorkoutTypesPromises
+}
+
+const Save = ({work}: SaveWorkType) => {
+    const {saveLater, setSaveLater} = useContext(WorkContext)
+
+    const handleSaveButton = () => {
+        const inAlready = saveLater.some((item) => Number(item.id) === Number(work.id))
+
+        if(!inAlready){
+            setSaveLater([...saveLater, work])
+            toast.success(`Saved ${work.name} for later`)
+        }else{
+            toast.info(`${work.name} is already saved for later`)
+        }
+    }
+
+
     return (
-        <button className='save-button'><CiBookmark />Save for later</button>
+        <button onClick={() => handleSaveButton()} className='save-button'><CiBookmark />Save for later</button>
     );
 };
 
