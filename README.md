@@ -36,5 +36,8 @@ A modern, responsive fitness tracking web application built to help users seamle
 4. **Interactive Workout Plan & Saved Tabs**  
    Easily toggle between your active **Today's Plan** and **Saved Workouts**, complete workouts using "Mark as Done", or remove specific exercises with instant toast notification feedback.
 
-5. **Optimized App Router Architecture**  
-   Utilizes Next.js 15 App Router best practices, featuring dynamic SEO metadata generation (`generateMetadata`) and a leaf-component structure that limits `'use client'` usage strictly to interactive components.
+5. **Instant Library Search & Tag Filtering**  
+   Quickly filter exercises across the entire library in real-time by exercise name, required equipment, or target muscle groups as you type.
+
+6. **Robust Dynamic Routing & Native 404 Handling**  
+   Features deep-linked exercise detail pages with custom SEO metadata generation, clean server-side data fetching, and native `notFound()` handling for unknown routes.
