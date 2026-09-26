@@ -3,6 +3,7 @@ import React from 'react';
 import './workDetails.css'
 import Add from '@/Components/Buttons/Add';
 import Save from '@/Components/Buttons/Save';
+import { notFound } from 'next/navigation';
 
 export interface WorkoutDetailsPageTypes{
     params: Promise<{
@@ -12,15 +13,20 @@ export interface WorkoutDetailsPageTypes{
 
 
 const getWorkout = async(id:string) => {
-    const response = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`)
-    const data = await response.json()
-    return data
+    try{
+        const response = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`)
+        if(!response.ok) return null
+        const data = await response.json()
+        return data?.id ? data : null
+    } catch {
+        return null
+    }
 }
 
 
-export async function generateMetadata({params}:WorkoutDetailsPageTypes) {
-    const {id} = await params
-    const work = await getWorkout(id)
+export async function generateMetadata({ params }: WorkoutDetailsPageTypes) {
+    const { id } = await params;
+    const work = await getWorkout(id);
 
     if (!work) {
         return {
@@ -34,9 +40,9 @@ export async function generateMetadata({params}:WorkoutDetailsPageTypes) {
     return {
         title: `${work.name} | FitLog`,
         icons: {
-                icon: '/assets/logo.ico'
-            }
-    }
+            icon: '/assets/logo.ico'
+        }
+    };
 }
 
 const WorkoutDetailsPage = async({params}:WorkoutDetailsPageTypes) => {
@@ -45,11 +51,7 @@ const WorkoutDetailsPage = async({params}:WorkoutDetailsPageTypes) => {
 
 
     if (!work) {
-        return (
-            <div className='flex items-center justify-center min-h-screen bg-[#15171d]'>
-                <h1 className='text-white text-2xl font-inter'>Workout not found</h1>
-            </div>
-        );
+       notFound()
     }
 
     
