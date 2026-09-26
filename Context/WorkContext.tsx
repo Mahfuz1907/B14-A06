@@ -11,7 +11,9 @@ export interface WorkContextType{
     tab: string,
     setTab: Dispatch<SetStateAction<string>>,
     sortBy: string,
-    setSortBy: Dispatch<SetStateAction<string>>
+    setSortBy: Dispatch<SetStateAction<string>>,
+    searchQuery: string,
+    setSearchQuery: Dispatch<SetStateAction<string>>
 }
 
 export const WorkContext = createContext<WorkContextType>({
@@ -22,7 +24,9 @@ export const WorkContext = createContext<WorkContextType>({
     tab: 'plan',
     setTab : () => {},
     sortBy: 'Duration',
-    setSortBy: () => {}
+    setSortBy: () => {},
+    searchQuery: '',
+    setSearchQuery: () => {}
 })
 
 const WorkProvider = ({children} : {children: ReactNode}) => {
@@ -47,6 +51,7 @@ const WorkProvider = ({children} : {children: ReactNode}) => {
 
     const [tab, setTab] = useState<string>('plan')
     const [sortBy, setSortBy] = useState<string>('Duration')
+    const [searchQuery, setSearchQuery] = useState<string>('')
 
     useEffect(()=> {
         localStorage.setItem('fitlog_planToday', JSON.stringify(planToday))
@@ -64,7 +69,9 @@ const WorkProvider = ({children} : {children: ReactNode}) => {
         tab, 
         setTab,
         sortBy,
-        setSortBy
+        setSortBy,
+        searchQuery,
+        setSearchQuery
     }
     return (
         <WorkContext.Provider 
