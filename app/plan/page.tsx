@@ -1,6 +1,15 @@
 import React from 'react';
 import './Plan.css'
 import PPF from '@/Components/PlanPageFunction/PPF';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: "My Plan | FitLog",
+  icons: {
+    icon: '/assets/logo.ico'
+  }
+};
 
 const MyPlan = () => {
     return (

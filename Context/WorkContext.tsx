@@ -1,7 +1,7 @@
 'use client'
 
 import { WorkoutTypesPromises } from '@/type';
-import React, { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
+import React, { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
 
 export interface WorkContextType{
     planToday: WorkoutTypesPromises[],
@@ -26,10 +26,35 @@ export const WorkContext = createContext<WorkContextType>({
 })
 
 const WorkProvider = ({children} : {children: ReactNode}) => {
-    const [planToday, setPlanToday] = useState<WorkoutTypesPromises[]>([])
-    const [saveLater, setSaveLater] = useState<WorkoutTypesPromises[]>([])
+    const [planToday, setPlanToday] = useState<WorkoutTypesPromises[]>(()=> {
+        if (typeof window !== 'undefined'){
+            const saved = localStorage.getItem('fitlog_planToday')
+            return saved ? JSON.parse(saved) : []
+        }
+
+        return []
+    })
+
+
+    const [saveLater, setSaveLater] = useState<WorkoutTypesPromises[]>(()=> {
+        if(typeof window !== 'undefined'){
+            const saved = localStorage.getItem('fitlog_saveLater')
+            return saved ? JSON.parse(saved) : []
+        }
+
+        return []
+    })
+
     const [tab, setTab] = useState<string>('plan')
     const [sortBy, setSortBy] = useState<string>('Duration')
+
+    useEffect(()=> {
+        localStorage.setItem('fitlog_planToday', JSON.stringify(planToday))
+    }, [planToday])
+
+    useEffect(()=> {
+        localStorage.setItem('fitlog_saveLater', JSON.stringify(saveLater))
+    }, [saveLater])
 
     const sharedData = {
         planToday,
